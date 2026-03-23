@@ -1,5 +1,6 @@
 ---
 site_name: "omop-cdm-v54"
+docs_dir: elements
 theme:
   # https://www.mkdocs.org/user-guide/configuration/#theme
   name: material
@@ -44,12 +45,8 @@ markdown_extensions:
   #     scripts:
   #       - gen_pages.py  # or any other name or path
 
-watch:
-  - documentation/schema
-
 nav:
   - Home: index.md
-  - Schema: elements/index.md
   - About: about.md
 
 exclude_docs: |
