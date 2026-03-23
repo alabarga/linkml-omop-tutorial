@@ -63,7 +63,7 @@ At the end of this tutorial, participants are expected to:
   - **Review:** We will inspect the AI-generated map, emphasizing the human's role as an expert validator.
 
 - **Part 4: Execution, Validation, and Wrap-up (30 min)**
-  - **Hands-on:** Participants will use the `linkml-map` Python library to execute the generated map file on the source `labevents.csv` data.
+  - **Hands-on:** Participants will use the `linkml-map` Python library to execute the generated map file on the source `patients.csv` data.
   - **Hands-on:** We will use `linkml-validate` to check the integrity of the output data against the target `omop_cdm.yaml` schema.
   - Final discussion, Q&A, and links to further resources.
 
