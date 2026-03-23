@@ -1,0 +1,76 @@
+prefixes:
+  linkml: https://w3id.org/linkml/
+  omop_cdm: https://w3id.org/omop_cdm
+  MySchema: https://w3id.org/MySchema
+
+# Enum → standard concept id (see linkml-map transform_enum: PV names become output).
+# Source values must match CSV strings (use plain dict rows in Python, not GENDEREnum instances).
+enum_derivations:
+  GENDER_enum:
+    populated_from: GENDER_enum
+    permissible_value_derivations:
+      "8507":
+        populated_from: "M"
+      "8532":
+        populated_from: "F"
+  RACE_enum:
+    populated_from: RACE_enum
+    permissible_value_derivations:
+      "8527":
+        populated_from: "white"
+      "8516":
+        populated_from: "black"
+      "8515":
+        populated_from: "asian"
+      "0":
+        sources: ["hawaiian", "native", "other"]
+  ETHNICITY_enum:
+    populated_from: ETHNICITY_enum
+    permissible_value_derivations:
+      "38003563":
+        populated_from: "hispanic"
+      "38003564":
+        populated_from: "nonhispanic"
+  STATE_enum:
+    populated_from: STATE_enum
+    mirror_source: true
+  PREFIX_enum:
+    populated_from: PREFIX_enum
+    mirror_source: true
+  MARITAL_enum:
+    populated_from: MARITAL_enum
+    mirror_source: true
+
+class_derivations:
+  person:
+    # Must match root ``patients.yaml`` class ``Patient`` and map_object(..., source_type="Patient")
+    populated_from: Patient
+    slot_derivations:
+      # linkml-map eval_expr_with_mapping (simpleeval): slot names are variables (not `src.*`).
+      # Values are whatever the row holds (CSV → strings); schema `range: datetime` is NOT applied
+      # inside expressions. Only whitelisted functions exist (str, int, abs, uuid5, …) — no `datetime` module.
+      # Use str(BIRTHDATE) slicing, or parse dates in Python before map_object.
+      person_id:
+        expr: "int(uuid5('https://example.org/person', str(Id)).replace('-', '')[:15], 16) % 1000000000"
+      person_source_value:
+        populated_from: Id
+      gender_concept_id:
+        populated_from: GENDER
+      gender_source_value:
+        expr: GENDER
+      year_of_birth:
+        expr: "int(str(BIRTHDATE)[0:4]) if BIRTHDATE else None"
+      month_of_birth:
+        expr: "int(str(BIRTHDATE)[5:7]) if BIRTHDATE else None"
+      day_of_birth:
+        expr: "int(str(BIRTHDATE)[8:10]) if BIRTHDATE else None"
+      birth_datetime:
+        populated_from: BIRTHDATE
+      race_concept_id:
+        populated_from: RACE
+      race_source_value:
+        expr: RACE
+      ethnicity_concept_id:
+        populated_from: ETHNICITY
+      ethnicity_source_value:
+        expr: ETHNICITY
