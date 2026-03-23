@@ -1,0 +1,12 @@
+linkml
+schema-automator
+linkml-map
+requests
+pydantic-ai
+baml-py
+mkdocs
+mkdocs-material
+mkdocs-mermaid2-plugin
+mkdocs-pymdownx-material-extras
+mknotebooks
+jupyter
