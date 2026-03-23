@@ -78,7 +78,7 @@ At the end of this tutorial, participants are expected to:
 
 - [Profiling Synthea CSVs to LinkML](docs/PROFILE.md)
 - [Hand-authored linkml-map basics (Patients → OMOP)](docs/MAP.md)
-- [**LLM-assisted map generation** (profile → CDM-first source selection → validated map)](docs/LLM_MAP_PIPELINE.md) — main driver: `scripts/generate_omop_maps_from_sources.py`
+- [**LLM-assisted map generation** (using BAML)](docs/BAML.md)
 
 ## Online Resources
 
